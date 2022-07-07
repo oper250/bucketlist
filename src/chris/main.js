@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
-function YangMain() {
+function Chris() {
     return (
       <View>
           <Text>양재환 홈입니다.</Text>
@@ -9,4 +9,4 @@ function YangMain() {
     );
 }
 
-export default YangMain;
+export default Chris;

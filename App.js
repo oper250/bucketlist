@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import JDevsMain from './src/jdevs/main';
 import MooratoMain from './src/moorato/main';
-import YangMain from './src/yang/main';
+import Chris from './src/chris/main';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +35,7 @@ function App() {
               />
               <Tab.Screen
                   name="Notification"
-                  component={YangMain}
+                  component={Chris}
                   options={{
                       title: '양재홈11',
                       tabBarIcon: ({color, size}) => (

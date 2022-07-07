@@ -37,7 +37,7 @@ function App() {
                   name="Notification"
                   component={YangMain}
                   options={{
-                      title: '양재홈11',
+                      title: '양재홈',
                       tabBarIcon: ({color, size}) => (
                           <Icon name="home" color={color} size={size} />
                       ),

@@ -12,7 +12,10 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
       <NavigationContainer>
-          <Tab.Navigator initialRouteName="Home">
+          <Tab.Navigator
+              initialRouteName="Home"
+              screenOptions={{ headerShown: false }}
+          >
               <Tab.Screen
                   name="Home"
                   component={JDevsMain}

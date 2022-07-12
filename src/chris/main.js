@@ -3,7 +3,8 @@ import {Button, Text, View} from 'react-native';
 import CalendarModule from './CalendarModule';
 
 
-import NaverMapView, {Circle, Marker, Path, Polyline, Polygon} from "react-native-nmap";
+
+//import NaverMapView, {Circle, Marker, Path, Polyline, Polygon} from "react-native-nmap";
 
 // function MyMap() {
 //     const P0 = {latitude: 37.564362, longitude: 126.977011};
@@ -28,11 +29,26 @@ import NaverMapView, {Circle, Marker, Path, Polyline, Polygon} from "react-nativ
 //
 // export default MyMap;
 
+const {DEFAULT_EVENT_NAME} = CalendarModule.getConstants();
+
+const onPress = () => {
+    CalendarModule.createCalendarEventCallback(
+        'first Arg',
+        'second Arg',
+        (eventId) => {
+            console.log(`Created a new event with id ${eventId}`)
+        }
+    )
+}
+
 function Chris() {
     return (
       <View>
-          {/*<Text>양재환 홈입니다.</Text>*/}
-          <CalendarModule />
+          <Text>양재환 홈입니다.</Text>
+          <Button
+              title={"Click test"}
+              onPress={onPress}
+              />
       </View>
 
     );

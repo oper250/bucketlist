@@ -1,18 +1,19 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import JDevsMain from './src/jdevs/main';
 import MooratoMain from './src/moorato/main';
 import YangMain from './src/yang/main';
+import { BlurView, VibrancyView } from "@react-native-community/blur";
 
 const Tab = createBottomTabNavigator();
 
 function App() {
   return (
       <NavigationContainer>
-          <Tab.Navigator initialRouteName="Home">
+          <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Search">
               <Tab.Screen
                   name="Home"
                   component={JDevsMain}
@@ -27,10 +28,11 @@ function App() {
                   name="Search"
                   component={MooratoMain}
                   options={{
-                      title: '동욱홈',
+                      title: '동우쓰',
                       tabBarIcon: ({color, size}) => (
-                          <Icon name="home" color={color} size={size} />
+                          <Icon name="home" color={color} size={30} />
                       ),
+                      tabBarShowLabel: true,
                   }}
               />
               <Tab.Screen

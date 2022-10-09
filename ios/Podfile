@@ -19,6 +19,8 @@ target 'StudyApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
+
   target 'StudyAppTests' do
     inherit! :complete
     # Pods for testing

@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import JDevsMain from './src/jdevs/main';
 import MooratoMain from './src/moorato/main';
-import YangMain from './src/yang/main';
 import { BlurView, VibrancyView } from "@react-native-community/blur";
+import Chris from './src/chris/main';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ function App() {
               />
               <Tab.Screen
                   name="Notification"
-                  component={YangMain}
+                  component={Chris}
                   options={{
                       title: '양재홈',
                       tabBarIcon: ({color, size}) => (

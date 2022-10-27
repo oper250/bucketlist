@@ -257,6 +257,10 @@ android {
 
         }
     }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '7.2'
+    }
 }
 
 dependencies {
@@ -326,3 +330,5 @@ project.ext.vectoricons = [
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+tasks.register("prepareKotlinBuildScriptModel"){}

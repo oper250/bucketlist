@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#2296f3',
     },
     contentsView: {
-        justifyContent: 'center',
         alignItems: 'center',
         flex: 12,
         backgroundColor: '#ffa500',
@@ -32,21 +31,26 @@ const styles = StyleSheet.create({
     bucketItem: {
         width: 350,
         height: 120,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor: '#ddd',
         borderRadius: 20,
         flex: 0,
         flexDirection: 'row',
+        marginTop: 30,
     },
     bucketImg: {
         width: 100,
         height: 100,
+        borderRadius: 20,
+        flex: 1,
     },
-    bucketTextView: {
+    bucketDescView: {
+        flex: 2,
         marginLeft: 20,
     },
     bucketTitle: {
+        marginVertical: 5,
         fontWeight: 'bold',
         fontSize: 18,
         color: '#000',

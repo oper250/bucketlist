@@ -24,7 +24,7 @@ function MooratoMain() {
 
     return (
         <View style={styles.mainView}>
-            <Header title={'버킷리스트'}/>
+            <Header title={'버킷리스트1'}/>
             <View style={styles.contentsView}>
 
                 <ViewBucketList2 rsList={bucketList} />

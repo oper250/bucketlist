@@ -1,0 +1,165 @@
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import React, {Component, useEffect, useLayoutEffect, useState} from 'react';
+import {Dimensions, Text, View, Alert, Platform, UIManager} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import JDevsMain from './src/jdevs/main';
+import Chris from './src/chris/main';
+import reactGesture from 'react-native-gesture-handler';
+import MyBucket from './src/moorato/MyBucket';
+import OtherBucket from './src/moorato/OtherBucket';
+import BucketDetail from './src/moorato/BucketDetail';
+import StoryDetail from './src/moorato/StoryDetail';
+import WriteBucket from './src/moorato/WriteBucket';
+import Intro from './src/moorato/Intro';
+
+const Stack = createStackNavigator();
+const BottomTab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
+const TopTab2 = createMaterialTopTabNavigator();
+
+function BucketStack({navigation, route}) {
+    useLayoutEffect(() => {
+        const routeName = getFocusedRouteNameFromRoute(route);
+        if (routeName !== 'BucketMain') { //MyPage이외의 화면에 대해 tabBar none을 설정한다.
+            navigation.setOptions({tabBarStyle: {display: 'none'}});
+        } else {
+            navigation.setOptions({tabBarStyle: {display: undefined}});
+        }
+    }, [navigation, route]);
+
+    const config = {
+        animation: 'spring',
+        config: {
+            stiffness: 1000,
+            damping: 500,
+            mass: 3,
+            overshootClamping: true,
+            restDisplacementThreshold: 0.01,
+            restSpeedThreshold: 0.01,
+        },
+    };
+
+    return (
+        <Stack.Navigator
+            initialRouteName={"Intro"}
+            initialLayout={{
+                width: Dimensions.get('window').width      // 초기성능 향상
+            }}
+            screenOptions={() => ({
+                animationEnabled: true,
+                headerTitleAlign: "center",
+                transitionSpec: {
+                    open: config,
+                    close: config,
+                },
+                headerStyle: {
+                    backgroundColor: "white",
+                    borderBottomColor: "#eeeeee",
+                    shadowColor: "white",
+                    height: 50,
+                },
+                headerTintColor: '#333',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    color: '#f90e3d',
+                },
+            })}
+        >
+            <Stack.Screen name="Intro" component={Intro}></Stack.Screen>
+            <Stack.Screen
+                name="BucketMain" component={BucketMain}></Stack.Screen>
+            <Stack.Screen
+                name="DetailView" component={DetailView}></Stack.Screen>
+            <Stack.Screen name="WriteBucket" component={WriteBucket}></Stack.Screen>
+        </Stack.Navigator>
+    )
+}
+
+function BucketMain() {
+    return (
+        <TopTab.Navigator>
+            <TopTab.Screen name="MyBucket" component={MyBucket} />
+            <TopTab.Screen name="OtherBucket" component={OtherBucket} />
+        </TopTab.Navigator>
+    );
+}
+
+function DetailView({navigation, route}) {
+    return (
+        <TopTab2.Navigator
+            screenOptions={({route, navigation}) => ({
+                tabBarShowLabel: false,
+                tabBarItemStyle: { width: 10 },
+                tabBarStyle: { display: 'none' },
+                tabBarIndicatorStyle: {display: 'none'},
+            })}
+        >
+            <TopTab2.Screen
+                options={{
+                    tabBarShowLabel: false,
+                }}
+                initialParams={{'bucketSeqno': route.params.bucketSeqno}}
+                name="BucketDetail" component={BucketDetail} />
+            <TopTab2.Screen
+                options={{
+                    tabBarShowLabel: false,
+                }}
+                name="StoryDetail" component={StoryDetail} />
+        </TopTab2.Navigator>
+    );
+}
+
+
+
+function App() {
+    const [visible, setVisible] = useState(false);
+
+    return (
+        <NavigationContainer>
+            <BottomTab.Navigator
+                initialRouteName="Search"
+                screenOptions={{
+                    headerShown: false,
+                    tabBarActiveTintColor: '#fa8e81',
+                }}>
+                <BottomTab.Screen
+                    name="Home"
+                    component={JDevsMain}
+                    options={{
+                        title: '정식홈',
+                        tabBarIcon: ({color, size}) => (
+                            <Icon name="home" color={color} size={size} />
+                        ),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="Search"
+                    component={BucketStack}
+                    options={({ navigation, route }) => ({
+                        title: '동우쓰',
+                        tabBarIcon: ({color, size}) => (
+                            <Icon name="home" color={color} size={30} />
+                        ),
+                    })}
+                />
+                <BottomTab.Screen
+                    name="Notification"
+                    component={Chris}
+                    options={{
+                        title: '양재홈',
+                        tabBarIcon: ({color, size}) => (
+                            <Icon name="home" color={color} size={size} />
+                        ),
+                    }}
+                />
+            </BottomTab.Navigator>
+        </NavigationContainer>
+    );
+}
+
+export default App;

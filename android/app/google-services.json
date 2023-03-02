@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "768402093420",
+    "project_id": "moorato-deatcat",
+    "storage_bucket": "moorato-deatcat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768402093420:android:f42fa62cefb401b8102f49",
+        "android_client_info": {
+          "package_name": "com.studyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768402093420-9koc9amdkih813500fqh4r6sr1n4fcp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr_XpLs91aM8glsBifVlek_FLwVo7dBhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768402093420-9koc9amdkih813500fqh4r6sr1n4fcp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

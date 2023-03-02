@@ -16,12 +16,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
  *   // the name of the generated asset file containing your JS bundle
  *   bundleAssetName: "index.android.bundle",
  *
- *   // https://reactnative.dev/d
  *   // the entry file for bundle generation. If none specified and
  *   // "index.android.js" exists, it will be used. Otherwise "index.js" is
  *   // default. Can be overridden with ENTRY_FILE environment variable.
  *   entryFile: "index.android.js",
- *ocs/performance#enable-the-ram-format
+ *
+ *   // https://reactnative.dev/docs/performance#enable-the-ram-format
  *   bundleCommand: "ram-bundle",
  *
  *   // whether to bundle JS and assets in debug mode
@@ -79,7 +79,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+        enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -147,12 +147,12 @@ android {
             externalNativeBuild {
                 ndkBuild {
                     arguments "APP_PLATFORM=android-21",
-                        "APP_STL=c++_shared",
-                        "NDK_TOOLCHAIN_VERSION=clang",
-                        "GENERATED_SRC_DIR=$buildDir/generated/source",
-                        "PROJECT_BUILD_DIR=$buildDir",
-                        "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
+                            "APP_STL=c++_shared",
+                            "NDK_TOOLCHAIN_VERSION=clang",
+                            "GENERATED_SRC_DIR=$buildDir/generated/source",
+                            "PROJECT_BUILD_DIR=$buildDir",
+                            "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
+                            "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
                     cFlags "-Wall", "-Werror", "-fexceptions", "-frtti", "-DWITH_INSPECTOR=1"
                     cppFlags "-std=c++17"
                     // Make sure this target name is the same you specify inside the
@@ -257,13 +257,12 @@ android {
 
         }
     }
-
-    task wrapper(type: Wrapper) {
-        gradleVersion = '7.0'
-    }
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation project(':react-native-vector-icons')
@@ -307,8 +306,6 @@ if (isNewArchitectureEnabled()) {
     }
 }
 
-tasks.register("prepareKotlinBuildScriptModel"){}
-
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
@@ -328,7 +325,7 @@ def isNewArchitectureEnabled() {
 
 
 project.ext.vectoricons = [
-        iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'MaterialCommunityIcons.ttf', 'Ionicons.ttf' ] // Name of the font files you want to copy
+        iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'MaterialCommunityIcons.ttf', 'Ionicons.ttf', 'Entypo.ttf', 'AntDesign.ttf', 'FontAwesome.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
